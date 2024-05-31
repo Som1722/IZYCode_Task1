@@ -1,43 +1,60 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class calculator {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter A Num1:");
-        int n1 = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter A Num2");
-        int n2 = sc.nextInt();
+        while (true) {
+            try {
+                System.out.print("Enter the first number: ");
+                int num1 = scanner.nextInt();
+                System.out.print("Enter the second number: ");
+                int num2 = scanner.nextInt();
+                System.out.print("Enter the operation (+, -, *, /): ");
+                char operation = scanner.next().charAt(0);
 
-        System.out.println("Choose operator: + - * / %");
-        char op = sc.next().charAt(0);
-        switch (op) {
-            case '+':
-                int add = n1 + n2;
-                System.out.println(add);
-                break;
-            case '-':
-                int sub = n1 - n2;
-                System.out.println(sub);
-                break;
-            case '/':
-                int div = n1 / n2;
-                System.out.println(div);
-                break;
-            case '*':
-                int mul = n1 * n2;
-                System.out.println(mul);
-                break;
-            case '%':
-                int mod = n1 % n2;
-                System.out.println(mod);
-                break;
+                switch (operation) {
+                    case '+':
+                        System.out.println("Result: " + add(num1, num2));
+                        break;
+                    case '-':
+                        System.out.println("Result: " + subtract(num1, num2));
+                        break;
+                    case '*':
+                        System.out.println("Result: " + multiply(num1, num2));
+                        break;
+                    case '/':
+                        System.out.println("Result: " + divide(num1, num2));
+                        break;
+                    default:
+                        System.out.println("Invalid operation! Please try again.");
+                }
 
-            default:
-                System.out.println("Plese give valid operator");
-                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input! Please enter numeric values.");
+                scanner.nextLine();
+            }
         }
+    }
 
-        sc.close();
+    public static int add(int x, int y) {
+        return x + y;
+    }
+
+    public static int subtract(int x, int y) {
+        return x - y;
+    }
+
+    public static double multiply(double x, double y) {
+        return x * y;
+    }
+
+    public static double divide(double x, double y) {
+        if (y == 0) {
+            System.out.println("Error! Cannot divide by zero.");
+            return Double.NaN;
+        } else {
+            return x / y;
+        }
     }
 }
